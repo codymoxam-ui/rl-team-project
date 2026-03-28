@@ -11,7 +11,7 @@
 | Phase | What | Status |
 |-------|------|--------|
 | 1 | Project scaffold & environment | [x] |
-| 2 | MDP environment implementation | [ ] |
+| 2 | MDP environment implementation | [x] |
 | 3 | RL agents implementation | [ ] |
 | 4 | Model-based baseline (Value Iteration) | [ ] |
 | 5 | Experiment runner & config system | [ ] |
@@ -50,7 +50,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
 
 ### Steps
 
-- [ ] 1.1 Create directory structure:
+- [x] 1.1 Create directory structure:
   ```
   rl-team-project/
   ├── src/
@@ -92,7 +92,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
   └── .gitignore
   ```
 
-- [ ] 1.2 Create `requirements.txt`:
+- [x] 1.2 Create `requirements.txt`:
   ```
   numpy
   matplotlib
@@ -103,7 +103,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
   scipy
   ```
 
-- [ ] 1.3 Update `.gitignore` to exclude `results/` large pickle files but keep `figures/`.
+- [x] 1.3 Update `.gitignore` to exclude `results/` large pickle files but keep `figures/`.
 
 ---
 
@@ -114,7 +114,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
 
 ### Steps
 
-- [ ] 2.1 Define constants and transition/observation tables as module-level dicts:
+- [x] 2.1 Define constants and transition/observation tables as module-level dicts:
   - `SITES = ['S1', 'S2', 'S3', 'S4']`
   - `PATIENT_STATES = ['baseline', 'receptive', 'non_receptive']`
   - `OBSERVATIONS = ['favorable', 'neutral', 'unfavorable']`
@@ -122,7 +122,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
   - Patient transition matrix `T[patient_state][same_site | diff_site]` (probabilities from proposal)
   - Observation model `P_obs[setting][site][patient_state]` for all 3 settings (high/moderate/low separation)
 
-- [ ] 2.2 Implement `StimulationEnv` class:
+- [x] 2.2 Implement `StimulationEnv` class:
   ```python
   class StimulationEnv:
       def __init__(self, setting='high', horizon=10, c_switch=0.0, seed=None)
@@ -133,11 +133,11 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
       def get_transition_probs(state, action) -> dict  # for value iteration
   ```
 
-- [ ] 2.3 Encode state as a tuple `(current_site_idx, patient_state_idx, t)` — use integers internally for Q-table indexing, expose human-readable form via property.
+- [x] 2.3 Encode state as a tuple `(current_site_idx, patient_state_idx, t)` — use integers internally for Q-table indexing, expose human-readable form via property.
 
-- [ ] 2.4 Implement `get_transition_probs(state, action)` that returns the full distribution over `(next_state, reward, prob)` tuples — needed by Value Iteration.
+- [x] 2.4 Implement `get_transition_probs(state, action)` that returns the full distribution over `(next_state, reward, prob)` tuples — needed by Value Iteration.
 
-- [ ] 2.5 **Sanity checks** (in notebook `01_env_sanity_check.ipynb`):
+- [x] 2.5 **Sanity checks** (in notebook `01_env_sanity_check.ipynb`):
   - Verify transition probabilities sum to 1.0 for all state-action pairs
   - Verify observation probabilities sum to 1.0
   - Run random policy for 1000 episodes; check state distribution is reasonable
