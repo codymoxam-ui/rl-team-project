@@ -12,7 +12,7 @@
 |-------|------|--------|
 | 1 | Project scaffold & environment | [x] |
 | 2 | MDP environment implementation | [x] |
-| 3 | RL agents implementation | [ ] |
+| 3 | RL agents implementation | [x] |
 | 4 | Model-based baseline (Value Iteration) | [ ] |
 | 5 | Experiment runner & config system | [ ] |
 | 6 | Results collection & analysis | [ ] |
@@ -151,7 +151,7 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
 
 ### 3.0 Base Agent (`src/agents/base_agent.py`)
 
-- [ ] 3.0.1 Abstract base class:
+- [x] 3.0.1 Abstract base class:
   ```python
   class BaseAgent:
       def __init__(self, env, alpha, epsilon, epsilon_decay, gamma=1.0, seed=None)
@@ -161,44 +161,44 @@ Single-agent finite-horizon MDP simulating adaptive brain stimulation. The agent
       def get_Q() -> np.ndarray
       def reset()                                  # reset for new seed run
   ```
-- [ ] 3.0.2 Q-table: `np.zeros((n_sites+1, n_patient_states, horizon+1, n_actions))` — indexed by state tuple directly.
-- [ ] 3.0.3 ε-greedy with exponential decay: `ε = max(ε_min, ε_0 * decay^episode)`.
+- [x] 3.0.2 Q-table: `np.zeros((n_sites+1, n_patient_states, horizon+1, n_actions))` — indexed by state tuple directly.
+- [x] 3.0.3 ε-greedy with exponential decay: `ε = max(ε_min, ε_0 * decay^episode)`.
 
 ### 3.1 Monte Carlo Control (`src/agents/monte_carlo.py`)
 
-- [ ] 3.1.1 On-policy first-visit MC with ε-greedy behavior policy.
-- [ ] 3.1.2 Collect full episode trajectory `[(s, a, r), ...]`, then compute `G_t = Σ γ^k r_{t+k}` backwards.
-- [ ] 3.1.3 Update `Q(s,a)` using incremental mean (constant step-size `alpha`) for first visits only.
-- [ ] 3.1.4 After each episode update, decay ε.
+- [x] 3.1.1 On-policy first-visit MC with ε-greedy behavior policy.
+- [x] 3.1.2 Collect full episode trajectory `[(s, a, r), ...]`, then compute `G_t = Σ γ^k r_{t+k}` backwards.
+- [x] 3.1.3 Update `Q(s,a)` using incremental mean (constant step-size `alpha`) for first visits only.
+- [x] 3.1.4 After each episode update, decay ε.
 
 ### 3.2 Q-Learning (`src/agents/q_learning.py`)
 
-- [ ] 3.2.1 Off-policy TD(0): `Q(s,a) ← Q(s,a) + α[r + γ·max_a' Q(s',a') - Q(s,a)]`
-- [ ] 3.2.2 Update online after each step.
-- [ ] 3.2.3 Behavior policy is ε-greedy; target policy is greedy.
+- [x] 3.2.1 Off-policy TD(0): `Q(s,a) ← Q(s,a) + α[r + γ·max_a' Q(s',a') - Q(s,a)]`
+- [x] 3.2.2 Update online after each step.
+- [x] 3.2.3 Behavior policy is ε-greedy; target policy is greedy.
 
 ### 3.3 Expected SARSA (`src/agents/expected_sarsa.py`)
 
-- [ ] 3.3.1 `Q(s,a) ← Q(s,a) + α[r + γ·Σ_a' π(a'|s')·Q(s',a') - Q(s,a)]`
-- [ ] 3.3.2 Expected value under ε-greedy policy: `(ε/|A|) * sum(Q(s',:)) + (1-ε) * max(Q(s',:])`
-- [ ] 3.3.3 Update online after each step.
+- [x] 3.3.1 `Q(s,a) ← Q(s,a) + α[r + γ·Σ_a' π(a'|s')·Q(s',a') - Q(s,a)]`
+- [x] 3.3.2 Expected value under ε-greedy policy: `(ε/|A|) * sum(Q(s',:)) + (1-ε) * max(Q(s',:])`
+- [x] 3.3.3 Update online after each step.
 
 ### 3.4 Double Q-Learning (`src/agents/double_q_learning.py`)
 
-- [ ] 3.4.1 Maintain two Q-tables: `Q1`, `Q2`.
-- [ ] 3.4.2 At each step, with 50% probability update `Q1` using `Q2` for bootstrap target, else update `Q2` using `Q1`:
+- [x] 3.4.1 Maintain two Q-tables: `Q1`, `Q2`.
+- [x] 3.4.2 At each step, with 50% probability update `Q1` using `Q2` for bootstrap target, else update `Q2` using `Q1`:
   - Update `Q1`: `Q1(s,a) ← Q1(s,a) + α[r + γ·Q2(s', argmax_a' Q1(s',a')) - Q1(s,a)]`
   - Update `Q2`: symmetric
-- [ ] 3.4.3 Action selection: ε-greedy on `(Q1 + Q2) / 2`.
+- [x] 3.4.3 Action selection: ε-greedy on `(Q1 + Q2) / 2`.
 
 ### 3.5 Value Iteration (`src/agents/value_iteration.py`)
 
-- [ ] 3.5.1 Requires full model access — use `env.get_transition_probs()`.
-- [ ] 3.5.2 Backward induction for finite horizon: start from `t = I`, work backwards to `t = 0`.
+- [x] 3.5.1 Requires full model access — use `env.get_transition_probs()`.
+- [x] 3.5.2 Backward induction for finite horizon: start from `t = I`, work backwards to `t = 0`.
   - `V*(s, I) = 0` for all terminal states
   - `V*(s, t) = max_a Σ P(s',r|s,a) [r + γ V*(s', t+1)]`
-- [ ] 3.5.3 Store optimal `Q*(s,a,t)` values for comparison.
-- [ ] 3.5.4 This gives the **true optimal policy** — the upper bound for all model-free agents.
+- [x] 3.5.3 Store optimal `Q*(s,a,t)` values for comparison.
+- [x] 3.5.4 This gives the **true optimal policy** — the upper bound for all model-free agents.
 
 ---
 
