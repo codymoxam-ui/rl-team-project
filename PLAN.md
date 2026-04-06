@@ -15,8 +15,8 @@
 | 3 | RL agents implementation | [x] |
 | 4 | Model-based baseline (Value Iteration) | [x] |
 | 5 | Experiment runner & config system | [x] |
-| 6 | Results collection & analysis | [ ] |
-| 7 | Visualization & plots | [ ] |
+| 6 | Results collection & analysis | [x] |
+| 7 | Visualization & plots | [x] |
 | 8 | Paper writeup support | [ ] |
 | 9 | Presentation support | [ ] |
 
